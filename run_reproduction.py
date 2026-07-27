@@ -266,6 +266,13 @@ def main() -> None:
     raw6, independent6, control6 = claim6(SEED)
     dump_json(ARTIFACTS / "historical_baseline_checks.json", historical)
     dump_json(ARTIFACTS / "author_code_smoke.json", author)
+    try:
+        from reproduction.paper_order_sweep import run as run_paper_order_sweep
+    except ImportError:
+        paper_order_sweep = None
+    else:
+        paper_order_sweep = run_paper_order_sweep()
+        dump_json(ARTIFACTS / "routes" / "paper_order_sweep.json", paper_order_sweep)
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
@@ -349,6 +356,17 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
     print("CLAIM6_CONTROL=" + json.dumps(control6, sort_keys=True))
     print("CLAIM6_EVALUATOR_VERIFIER=" + candidate_verifier.stdout.strip().replace("\n", " | "))
     print("AUTHOR_SMOKE=" + json.dumps(author, sort_keys=True))
+    if paper_order_sweep is not None:
+        compact_paper_order = {
+            "evaluated": paper_order_sweep["evaluated"],
+            "constructor_error_count": len(paper_order_sweep["constructor_errors"]),
+            "paper_order_contracts": paper_order_sweep["paper_order_contracts"],
+            "torch_matches_paper": paper_order_sweep["torch_matches_paper"],
+            "destructive_control": paper_order_sweep["destructive_control"],
+            "verdicts": paper_order_sweep["verdicts"],
+            "limitation": paper_order_sweep["limitation"],
+        }
+        print("PAPER_ORDER_SWEEP=" + json.dumps(compact_paper_order, sort_keys=True))
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
     # The author-code smoke test is diagnostic at this baseline: Claims 1--5
