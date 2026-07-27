@@ -112,6 +112,12 @@ def _agreement(observed: float, reference: float) -> bool:
     return abs(observed - reference) <= 8.0 * float(np.spacing(np.float32(scale)))
 
 
+def _is_even_float32(value: float) -> bool:
+    bits = int(np.float32(value).view(np.uint32))
+    fraction_bits = bits & 0x7FFFFF
+    return fraction_bits % 2 == 0
+
+
 def run() -> dict[str, Any]:
     torch.manual_seed(SEED)
     torch.use_deterministic_algorithms(True)
@@ -158,6 +164,37 @@ def run() -> dict[str, Any]:
                 for endpoint in (-2.0**-9, 0.0, 2.0**-9)
             )
         )
+        condition3_route = "second"
+        condition3_details: dict[str, Any] = {
+            "zeta": 2.0**-10,
+            "derivative_at_zero": _analytic(name, 0.0)[1],
+        }
+        condition3_pass = condition3_second_bullet
+        if name == "ReLU":
+            zeta = _f32(2.0**-11)
+            witness_x = _f32(2.0**-10)
+            radius = _f32(zeta + abs(witness_x))
+            derivative_at_x = _analytic(name, witness_x)[1]
+            condition3_route = "first"
+            condition3_pass = (
+                not (-zeta < witness_x < zeta)
+                and math.isfinite(radius)
+                and abs(derivative_at_x) >= math.ldexp(1.0, -P)
+                and _is_even_float32(witness_x)
+                and all(
+                    math.isfinite(_analytic(name, endpoint)[0])
+                    and abs(_analytic(name, endpoint)[0])
+                    <= math.ldexp(1.0, E_MAX)
+                    for endpoint in (-radius, 0.0, radius)
+                )
+            )
+            condition3_details = {
+                "zeta": zeta,
+                "witness_x": witness_x,
+                "zeta_plus_abs_x": radius,
+                "derivative_at_x": derivative_at_x,
+                "witness_x_even": _is_even_float32(witness_x),
+            }
         autograd_agrees = all(
             _agreement(observed, reference)
             for observed, reference in zip(
@@ -180,12 +217,14 @@ def run() -> dict[str, Any]:
                 "eta1": eta1,
                 "eta2": eta2,
                 "condition2_bullets": [bullet1, bullet2, bullet3, bullet4],
-                "condition3_second_bullet": condition3_second_bullet,
+                "condition3_route": condition3_route,
+                "condition3_details": condition3_details,
+                "condition3_pass": condition3_pass,
                 "autograd_delta0": autograd0,
                 "autograd_delta1": autograd1,
                 "autograd_agrees": autograd_agrees,
                 "pass": all(
-                    (bullet1, bullet2, bullet3, bullet4, condition3_second_bullet)
+                    (bullet1, bullet2, bullet3, bullet4, condition3_pass)
                 )
                 and autograd_agrees,
             }
@@ -205,8 +244,8 @@ def run() -> dict[str, Any]:
         "all_condition2_witnesses_pass": all(
             all(row["condition2_bullets"]) for row in rows
         ),
-        "all_condition3_local_witnesses_pass": all(
-            row["condition3_second_bullet"] for row in rows
+        "all_condition3_disjunctive_witnesses_pass": all(
+            row["condition3_pass"] for row in rows
         ),
         "all_analytic_autograd_checks_pass": all(row["autograd_agrees"] for row in rows),
         "constant_control_rejected": not constant_control[
