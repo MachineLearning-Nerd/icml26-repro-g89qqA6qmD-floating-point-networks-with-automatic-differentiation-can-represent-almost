@@ -41,5 +41,12 @@ claim=6 evidence_check=PASS theorem_verdict=VERIFIED
 cumulative_regression=PASS controls=PASS
 ```
 
+Formal cumulative regeneration run
+`4064ba4a-a790-48ab-ab16-e7c674c7151b` at Git
+`f09a1bcbcdfac1c0ffac71deb792ed8c1e6d13bb` completed on HF
+`cpu-upgrade` in 58 s (21.296464 s scientific runtime). It regenerated every
+route, checked the displayed JSON against those live results, and produced the
+output above.
+
 The old `verify` and `overview` pages are preserved as **Historical rejected
 baseline** evidence and are not current verification.

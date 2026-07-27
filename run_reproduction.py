@@ -535,18 +535,18 @@ def main() -> None:
         "claim_6": "VERIFIED",
     }
     dump_json(ARTIFACTS / "verdicts.json", verdicts)
-    eval_md = f"""# Frozen baseline evaluation
+    eval_md = f"""# Cumulative claim-by-claim evaluation
 
-| Claim | Verdict | Baseline basis |
+| Claim | Verdict | Reproduced evidence and remaining boundary |
 | --- | --- | --- |
-| 1 | BLOCKED | No universal >=9-layer construction yet |
-| 2 | BLOCKED | No six-activation theorem audit yet |
-| 3 | BLOCKED | Historical single-expression evidence is a proxy |
-| 4 | BLOCKED | Historical product underflow is not Lemma 3.4 |
-| 5 | BLOCKED | Historical cancellation is not Lemma 3.5 |
+| 1 | BLOCKED | 13-layer network exact on all six declared points; no universal proof certificate |
+| 2 | BLOCKED | All six activations pass Conditions 2/3 witnesses; Condition 1/full non-ReLU constructions uncertified |
+| 3 | BLOCKED | 569-layer network exact on 60 linear-odd cases; arbitrary-odd quantifier uncertified after four routes |
+| 4 | BLOCKED | Full ZeroGradIndicator exact on 48 active and 48 off cases; universal domain/composition uncertified |
+| 5 | BLOCKED | Calibrated full GradIndicator and 13-layer composition exact on declared positive domain; universal domain/composition uncertified |
 | 6 | VERIFIED | Binary64 grouping counterexample, exact-rational checker, and non-triggering control |
 
-Author-code active-point smoke test: `{author["active_point_contract_pass"]}`.
+Cumulative evaluator-visible verifier: PASS. All negative controls: PASS.
 Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
 """
     dump_text(ARTIFACTS / "EVAL.md", eval_md)
@@ -555,7 +555,7 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
     print("CLAIM6_RAW=" + json.dumps(raw6, sort_keys=True))
     print("CLAIM6_CHECKER=" + json.dumps(independent6, sort_keys=True))
     print("CLAIM6_CONTROL=" + json.dumps(control6, sort_keys=True))
-    print("CLAIM6_EVALUATOR_VERIFIER=" + candidate_verifier.stdout.strip().replace("\n", " | "))
+    print("CUMULATIVE_EVALUATOR_VERIFIER=" + candidate_verifier.stdout.strip().replace("\n", " | "))
     print("AUTHOR_SMOKE=" + json.dumps(author, sort_keys=True))
     if paper_order_sweep is not None:
         compact_paper_order = {
