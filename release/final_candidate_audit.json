@@ -1,0 +1,46 @@
+{
+  "canonical_entrypoints": [
+    "README.md",
+    "logbook.json",
+    "pages/index.md"
+  ],
+  "opened_files": [
+    "README.md",
+    "code/verify_claim6.py",
+    "code/verify_current.py",
+    "data/claim1_full_network.json",
+    "data/claim2_activations.json",
+    "data/claim3_theorem32.json",
+    "data/claim4_zero_gradient.json",
+    "data/claim5_zero_output_gradient.json",
+    "data/claim6_raw.json",
+    "logbook.json",
+    "pages/claim-1-current/page.md",
+    "pages/claim-2-current/page.md",
+    "pages/claim-3-current/page.md",
+    "pages/claim-4-current/page.md",
+    "pages/claim-5-current/page.md",
+    "pages/claim-6-current/page.md",
+    "pages/current-verification/page.md",
+    "pages/historical-index/page.md",
+    "pages/index.md",
+    "pages/overview/page.md",
+    "pages/release-audit/page.md",
+    "pages/verify/page.md"
+  ],
+  "problems": [],
+  "reachable_slugs": [
+    "claim-1-current",
+    "claim-2-current",
+    "claim-3-current",
+    "claim-4-current",
+    "claim-5-current",
+    "claim-6-current",
+    "current-verification",
+    "historical-index",
+    "overview",
+    "release-audit",
+    "verify"
+  ],
+  "verdict": "PASS"
+}
