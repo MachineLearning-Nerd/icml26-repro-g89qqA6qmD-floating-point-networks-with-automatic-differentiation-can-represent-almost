@@ -254,9 +254,11 @@ def grad_indicator_backward(
     return f32(grad_main_scalar + grad_zero)
 
 
-def evaluate_zero_grad(module: ZeroGradIndicator, x: float) -> tuple[float, float]:
+def evaluate_zero_grad(
+    module: ZeroGradIndicator, x: float, upstream: float = 1.0
+) -> tuple[float, float]:
     output, cache = zero_grad_forward(module, f32(x))
-    gradient = zero_grad_backward(module, cache, f32(1.0))
+    gradient = zero_grad_backward(module, cache, f32(upstream))
     return float(output), float(gradient)
 
 
@@ -266,7 +268,9 @@ def evaluate_exact_indicator(module: ExactIndicator, x: float) -> tuple[float, f
     return float(output), float(gradient)
 
 
-def evaluate_grad(module: GradIndicator, x: float) -> tuple[float, float]:
+def evaluate_grad(
+    module: GradIndicator, x: float, upstream: float = 1.0
+) -> tuple[float, float]:
     output, cache = grad_indicator_forward(module, f32(x))
-    gradient = grad_indicator_backward(module, cache, f32(1.0))
+    gradient = grad_indicator_backward(module, cache, f32(upstream))
     return float(output), float(gradient)

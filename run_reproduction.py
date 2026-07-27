@@ -283,6 +283,16 @@ def main() -> None:
             ARTIFACTS / "routes" / "derivative_calibration_audit.json",
             derivative_audit,
         )
+    try:
+        from reproduction.full_network_composition import run as run_full_network
+    except ImportError:
+        full_network = None
+    else:
+        full_network = run_full_network()
+        dump_json(
+            ARTIFACTS / "routes" / "full_network_composition.json",
+            full_network,
+        )
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
@@ -395,6 +405,22 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
         print(
             "DERIVATIVE_CALIBRATION_AUDIT="
             + json.dumps(compact_derivative_audit, sort_keys=True)
+        )
+    if full_network is not None:
+        compact_full_network = {
+            "route": full_network["route"],
+            "domain": full_network["domain"],
+            "rows": full_network["rows"],
+            "off_rows": full_network["off_rows"],
+            "indicator_matrix": full_network["indicator_matrix"],
+            "negative_control": full_network["negative_control"],
+            "independent_checker": full_network["independent_checker"],
+            "verdicts": full_network["verdicts"],
+            "limitation": full_network["limitation"],
+        }
+        print(
+            "FULL_NETWORK_COMPOSITION="
+            + json.dumps(compact_full_network, sort_keys=True)
         )
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
