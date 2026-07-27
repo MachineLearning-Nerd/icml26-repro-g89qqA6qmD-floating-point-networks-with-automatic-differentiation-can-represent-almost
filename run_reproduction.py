@@ -216,11 +216,11 @@ def claim6(seed: int) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any]]:
 
 def write_contracts() -> None:
     claims = {
-        1: ("Theorem 3.1", "BLOCKED", "No universal multilayer construction in baseline."),
-        2: ("Theorem 3.1 activation family", "BLOCKED", "No per-activation theorem audit in baseline."),
-        3: ("Theorem 3.2", "BLOCKED", "Historical single-expression check is only a proxy."),
-        4: ("Lemma 3.4", "BLOCKED", "Historical product underflow is not the lemma construction."),
-        5: ("Lemma 3.5", "BLOCKED", "Historical cancellation expression is not the lemma construction."),
+        1: ("Theorem 3.1", "BLOCKED", "A 13-layer network is exact on its complete declared six-point domain; the universal theorem quantifiers lack a proof certificate."),
+        2: ("Theorem 3.1 activation family", "BLOCKED", "All six activations pass Conditions 2 and 3 witnesses; Condition 1 and every full non-ReLU construction remain uncertified."),
+        3: ("Theorem 3.2", "BLOCKED", "A 569-layer network is exact for a linear odd family; four routes do not certify arbitrary antisymmetric targets."),
+        4: ("Lemma 3.4", "BLOCKED", "The full zero-gradient block passes finite paper-order checks; the complete-domain and universal composition quantifiers remain uncertified."),
+        5: ("Lemma 3.5", "BLOCKED", "The calibrated full gradient block passes a positive finite domain; negative points and the universal quantifiers remain uncertified."),
         6: (
             "Section 1.1 non-associativity mechanism",
             "VERIFIED",
@@ -235,6 +235,14 @@ def write_contracts() -> None:
         5: "S3.Thmtheorem5.1.1.1",
         6: "S1.SS1.SSS1",
     }
+    quantifiers = {
+        1: "For q>=6, every listed activation, complete bounded float domain, arbitrary target value map and compatible bounded gradient map, and every L>=9.",
+        2: "Theorem 3.1's universal result separately names ReLU, ELU, GELU, Swish, Sigmoid, and tanh.",
+        3: "For arbitrary antisymmetric g*(x,y), every bounded x and y, and every L>=2^(q+1)+2p+11, one fixed network exists.",
+        4: "Under Conditions 1-2 and distinguishability: arbitrary values, zero AD gradient for all stated input gradients, and boxplus neutrality.",
+        5: "Under Conditions 1-3 and distinguishability: zero values on the complete domain, arbitrary target AD gradient, and boxplus neutrality.",
+        6: "The construction mechanism uses floating-point non-associativity to decouple AD gradients from exact-real chain-rule proportionality.",
+    }
     for number, (title, verdict, basis) in claims.items():
         directory = ARTIFACTS / f"claim_{number}"
         dump_json(
@@ -244,16 +252,143 @@ def write_contracts() -> None:
                 "title": title,
                 "source_url": f"https://ar5iv.labs.arxiv.org/html/2605.01702#{anchors[number]}",
                 "paper_source_sha256": SOURCE_SHA256,
+                "exact_quantifier_contract": quantifiers[number],
                 "required_verdicts": ["VERIFIED", "FALSIFIED", "BLOCKED"],
-                "baseline_verdict": verdict,
+                "verdict": verdict,
                 "basis": basis,
             },
         )
         dump_text(directory / "exact_command.txt", FIXED_COMMAND)
         dump_text(
             directory / "limitations_and_deviations.md",
-            f"# Limitations and deviations\n\nBaseline verdict: **{verdict}**.\n\n{basis}",
+            f"# Limitations and deviations\n\nVerdict: **{verdict}**.\n\n{basis}",
         )
+
+
+def write_cumulative_claim_artifacts(
+    paper_order_sweep: dict[str, Any],
+    derivative_audit: dict[str, Any],
+    full_network: dict[str, Any],
+    activation_audit: dict[str, Any],
+    theorem32_audit: dict[str, Any],
+    claim6_raw: dict[str, Any],
+    claim6_checker: dict[str, Any],
+    claim6_control: dict[str, Any],
+) -> None:
+    routes = {
+        1: full_network,
+        2: activation_audit,
+        3: theorem32_audit,
+        4: paper_order_sweep,
+        5: {
+            "released_and_calibration_audit": derivative_audit,
+            "full_network_composition": full_network,
+        },
+        6: claim6_raw,
+    }
+    checkers = {
+        1: full_network["independent_checker"],
+        2: activation_audit["independent_checker"],
+        3: theorem32_audit["independent_checker"],
+        4: {
+            "active_value_zero_gradient_exact": (
+                paper_order_sweep["paper_order_contracts"]["zero_active_exact"]
+                == paper_order_sweep["evaluated"]
+            ),
+            "off_point_zero_zero_exact": (
+                paper_order_sweep["paper_order_contracts"]["zero_off_exact"]
+                == paper_order_sweep["evaluated"]
+            ),
+        },
+        5: {
+            **derivative_audit["independent_checker"],
+            "composed_values_exact": full_network["independent_checker"]["all_values_exact"],
+            "composed_gradients_exact": full_network["independent_checker"]["all_gradients_exact"],
+        },
+        6: claim6_checker,
+    }
+    controls = {
+        1: full_network["negative_control"],
+        2: activation_audit["negative_control"],
+        3: theorem32_audit["negative_control"],
+        4: paper_order_sweep["destructive_control"],
+        5: derivative_audit["negative_control"],
+        6: claim6_control,
+    }
+    methods = {
+        1: "Execute one 13-layer ReLU composition of full value and gradient indicator branches; exhaust its declared domain and compare float32 bits.",
+        2: "Construct explicit float32 witnesses for every bullet of Conditions 2 and 3; compare analytic derivatives with autograd.",
+        3: "Execute one 569-layer ReLU network, audit exact antisymmetry, and complete four distinct routes including a dedicated falsification attempt.",
+        4: "Evaluate the released full ZeroGradIndicator with an independent explicit left-to-right float32 affine interpreter.",
+        5: "Measure the released normalization, apply its exact 0.5 correction, then compose the complete gradient branches into the 13-layer network.",
+        6: "Find a deterministic binary64 grouping difference; reconstruct operands as exact rationals and use an exactly representable powers-of-two control.",
+    }
+    source_titles = {
+        1: "Theorem 3.1",
+        2: "Theorem 3.1 activation list and Conditions 1–3",
+        3: "Theorem 3.2",
+        4: "Lemma 3.4",
+        5: "Lemma 3.5",
+        6: "Section 1.1",
+    }
+    for number in range(1, 7):
+        directory = ARTIFACTS / f"claim_{number}"
+        dump_json(directory / "raw_results.json", routes[number])
+        dump_json(directory / "independent_checker_output.json", checkers[number])
+        dump_json(directory / "negative_control_output.json", controls[number])
+        dump_text(directory / "method.md", f"# Method\n\n{methods[number]}")
+        dump_text(
+            directory / "source_audit.md",
+            "# Source audit\n\n"
+            f"Source: {source_titles[number]}, arXiv 2605.01702. "
+            f"Audited HTML SHA-256: `{SOURCE_SHA256}`. "
+            "The exact universal quantifiers are retained in the claim contract; "
+            "finite corroboration is not treated as a proof.",
+        )
+        verdict = "VERIFIED" if number == 6 else "BLOCKED"
+        dump_text(
+            directory / "EVAL.md",
+            f"# Claim {number} evaluation\n\n"
+            f"Verdict: **{verdict}**.\n\n"
+            f"Independent checker: `{json.dumps(checkers[number], sort_keys=True)}`\n\n"
+            f"Negative control: `{json.dumps(controls[number], sort_keys=True)}`",
+        )
+
+
+def verify_candidate_matches_dynamic(
+    paper_order_sweep: dict[str, Any],
+    derivative_audit: dict[str, Any],
+    full_network: dict[str, Any],
+    activation_audit: dict[str, Any],
+    theorem32_audit: dict[str, Any],
+) -> None:
+    data = ROOT / "space_candidate" / "data"
+    candidate1 = json.loads((data / "claim1_full_network.json").read_text(encoding="utf-8"))
+    candidate2 = json.loads((data / "claim2_activations.json").read_text(encoding="utf-8"))
+    candidate3 = json.loads((data / "claim3_theorem32.json").read_text(encoding="utf-8"))
+    candidate4 = json.loads((data / "claim4_zero_gradient.json").read_text(encoding="utf-8"))
+    candidate5 = json.loads((data / "claim5_zero_output_gradient.json").read_text(encoding="utf-8"))
+
+    assert candidate1["rows"] == full_network["rows"]
+    assert candidate1["network_depth"] == full_network["independent_checker"]["network_depth"]
+    assert candidate1["negative_control"]["mismatch_count"] == full_network["negative_control"]["mismatch_count"]
+    assert {row["activation"] for row in candidate2["rows"]} == {
+        row["activation"] for row in activation_audit["rows"]
+    }
+    assert all(row["pass"] for row in activation_audit["rows"])
+    assert candidate3["theorem_depth"] == theorem32_audit["theorem_depth"]
+    assert candidate3["linear_antisymmetric_family"]["gradients_exact"] == sum(
+        row["gradient_exact"] for row in theorem32_audit["rows"]
+    )
+    assert candidate4["active_value_and_zero_gradient_exact"] == paper_order_sweep[
+        "paper_order_contracts"
+    ]["zero_active_exact"]
+    assert candidate5["calibration"]["active_zero_output_target_gradient_exact"] == derivative_audit[
+        "calibrated_active_exact"
+    ]
+    assert candidate5["full_composition"]["gradients_exact"] == sum(
+        row["gradient_exact"] for row in full_network["rows"]
+    )
 
 
 def main() -> None:
@@ -316,8 +451,34 @@ def main() -> None:
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
+    required_routes = (
+        paper_order_sweep,
+        derivative_audit,
+        full_network,
+        activation_audit,
+        theorem32_audit,
+    )
+    if any(route is None for route in required_routes):
+        raise AssertionError("A cumulative verification route is missing")
+    verify_candidate_matches_dynamic(
+        paper_order_sweep,
+        derivative_audit,
+        full_network,
+        activation_audit,
+        theorem32_audit,
+    )
+    write_cumulative_claim_artifacts(
+        paper_order_sweep,
+        derivative_audit,
+        full_network,
+        activation_audit,
+        theorem32_audit,
+        raw6,
+        independent6,
+        control6,
+    )
     candidate_verifier = subprocess.run(
-        [os.fspath(Path(os.sys.executable)), os.fspath(ROOT / "space_candidate" / "code" / "verify_claim6.py")],
+        [os.fspath(Path(os.sys.executable)), os.fspath(ROOT / "space_candidate" / "code" / "verify_current.py")],
         cwd=ROOT,
         check=False,
         text=True,
@@ -328,7 +489,7 @@ def main() -> None:
         candidate_verifier.stdout + candidate_verifier.stderr,
     )
     if candidate_verifier.returncode != 0:
-        raise AssertionError("Evaluator-visible Claim 6 verifier failed")
+        raise AssertionError("Evaluator-visible cumulative verifier failed")
     dump_text(
         ARTIFACTS / "claim_6" / "method.md",
         "# Method\n\n"

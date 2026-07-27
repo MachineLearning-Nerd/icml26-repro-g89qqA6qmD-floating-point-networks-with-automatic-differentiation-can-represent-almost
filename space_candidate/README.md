@@ -15,4 +15,6 @@ tags:
 
 # Repro - Floating-Point Networks with AD
 
-An open experiment logbook, published with [Trackio](https://github.com/gradio-app/trackio).
+Canonical evaluator entrypoint: `pages/index.md`, rendered by this static
+Trackio logbook. Current verification is first in navigation; the original
+judged pages are preserved and labeled **Historical rejected baseline**.

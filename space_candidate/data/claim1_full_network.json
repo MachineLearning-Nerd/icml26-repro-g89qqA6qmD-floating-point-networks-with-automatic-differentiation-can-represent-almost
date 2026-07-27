@@ -1,0 +1,39 @@
+{
+  "claim": 1,
+  "verdict": "BLOCKED",
+  "source_anchor": "S3.Thmtheorem1.1.1.1",
+  "paper_source_sha256": "5dee110336720fa632917d6f97c9cb2ad09c9cda2ce809bd2640d64b1fc4d55d",
+  "route": "full finite-domain 13-layer ReLU network composition",
+  "seed": 260501706,
+  "run_id": "aa4badc0-9263-4559-aa03-4f7ac8deaa69",
+  "git_sha": "abe50406cafc2de150f06a9761e4c8aa2d64054a",
+  "run_duration_seconds": 42,
+  "scientific_runtime_seconds": 6.337862611981109,
+  "compute": {
+    "backend": "hf",
+    "flavor": "cpu-upgrade",
+    "estimated_required_cores": 1,
+    "logical_cpus_visible": 64,
+    "cpu_affinity_count": 64,
+    "torch_threads": 4
+  },
+  "network_depth": 13,
+  "domain": [9.5367431640625e-07, 0.25, 0.5, 1.0, 2.0, 8.0],
+  "rows": [
+    {"x": 9.5367431640625e-07, "target_value": 0.25, "observed_value": 0.25, "upstream": 0.5, "target_gradient": 1.0, "observed_gradient": 1.0, "value_exact": true, "gradient_exact": true},
+    {"x": 0.25, "target_value": -0.5, "observed_value": -0.5, "upstream": 1.0, "target_gradient": -2.0, "observed_gradient": -2.0, "value_exact": true, "gradient_exact": true},
+    {"x": 0.5, "target_value": 1.0, "observed_value": 1.0, "upstream": 2.0, "target_gradient": 0.5, "observed_gradient": 0.5, "value_exact": true, "gradient_exact": true},
+    {"x": 1.0, "target_value": -2.0, "observed_value": -2.0, "upstream": 4.0, "target_gradient": -1.0, "observed_gradient": -1.0, "value_exact": true, "gradient_exact": true},
+    {"x": 2.0, "target_value": 4.0, "observed_value": 4.0, "upstream": 0.25, "target_gradient": 4.0, "observed_gradient": 4.0, "value_exact": true, "gradient_exact": true},
+    {"x": 8.0, "target_value": -8.0, "observed_value": -8.0, "upstream": 8.0, "target_gradient": -0.25, "observed_gradient": -0.25, "value_exact": true, "gradient_exact": true}
+  ],
+  "off_domain_controls_zero": 6,
+  "indicator_matrix_identity_exact": true,
+  "negative_control": {
+    "name": "rotate target-gradient assignments between branches",
+    "mismatch_count": 6,
+    "evaluated": 6,
+    "fires": true
+  },
+  "limitation": "The complete declared six-point test domain is exhausted, but this is not a proof certificate over the theorem's complete bounded float domain, every dimension, every map, and every admissible activation."
+}

@@ -50,6 +50,8 @@ Download the complete [raw
 JSON](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/data/claim6_raw.json)
 and the standalone [verifier
 source](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/code/verify_claim6.py).
+It is also included in the [cumulative regression
+verifier](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/code/verify_current.py).
 The verifier exits nonzero on any failed assertion.
 
 ## Independent checker

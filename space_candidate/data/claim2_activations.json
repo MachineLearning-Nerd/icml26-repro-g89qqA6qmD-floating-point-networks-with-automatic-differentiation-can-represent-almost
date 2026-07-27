@@ -1,0 +1,29 @@
+{
+  "claim": 2,
+  "verdict": "BLOCKED",
+  "source_anchor": "S3.Thmtheorem1.1.1.1",
+  "paper_source_sha256": "5dee110336720fa632917d6f97c9cb2ad09c9cda2ce809bd2640d64b1fc4d55d",
+  "route": "float32 Conditions 2 and 3 witness audit",
+  "seed": 260501707,
+  "run_id": "e84e43c8-ba9f-48df-afa0-257442dbcd6d",
+  "git_sha": "f176ad13f0b84471ba46fae69c614558f9acbec3",
+  "run_duration_seconds": 42,
+  "scientific_runtime_seconds": 6.466837959014811,
+  "compute": {"backend": "hf", "flavor": "cpu-upgrade", "estimated_required_cores": 1, "logical_cpus_visible": 64, "cpu_affinity_count": 64, "torch_threads": 4},
+  "format": {"p": 23, "q": 8, "e_min": -126, "e_max": 127},
+  "rows": [
+    {"activation": "ReLU", "condition2_bullets": [true, true, true, true], "condition3_route": "first", "condition3_pass": true, "analytic_autograd_agree": true},
+    {"activation": "ELU", "condition2_bullets": [true, true, true, true], "condition3_route": "second", "condition3_pass": true, "analytic_autograd_agree": true},
+    {"activation": "GELU", "condition2_bullets": [true, true, true, true], "condition3_route": "second", "condition3_pass": true, "analytic_autograd_agree": true},
+    {"activation": "Swish", "condition2_bullets": [true, true, true, true], "condition3_route": "second", "condition3_pass": true, "analytic_autograd_agree": true},
+    {"activation": "Sigmoid", "condition2_bullets": [true, true, true, true], "condition3_route": "second", "condition3_pass": true, "analytic_autograd_agree": true},
+    {"activation": "tanh", "condition2_bullets": [true, true, true, true], "condition3_route": "second", "condition3_pass": true, "analytic_autograd_agree": true}
+  ],
+  "negative_control": {
+    "name": "constant activation sigma(x)=1",
+    "value_separation": false,
+    "derivative_lower_bound": false,
+    "rejected": true
+  },
+  "limitation": "Conditions 2 and 3 are checked directly for all six activations. Condition 1 and the full construction for each non-ReLU activation are not independently certified."
+}

@@ -1,0 +1,18 @@
+{
+  "claim": 5,
+  "verdict": "BLOCKED",
+  "source_anchor": "S3.Thmtheorem5.1.1.1",
+  "paper_source_sha256": "5dee110336720fa632917d6f97c9cb2ad09c9cda2ce809bd2640d64b1fc4d55d",
+  "seed": 260501705,
+  "calibration_run_id": "16e3bf71-a507-41a9-a3dc-6de58e19e5ef",
+  "composition_run_id": "aa4badc0-9263-4559-aa03-4f7ac8deaa69",
+  "git_sha": "abe50406cafc2de150f06a9761e4c8aa2d64054a",
+  "run_duration_seconds": 42,
+  "scientific_runtime_seconds": 6.337862611981109,
+  "compute": {"backend": "hf", "flavor": "cpu-upgrade", "estimated_required_cores": 1, "logical_cpus_visible": 64, "cpu_affinity_count": 64, "torch_threads": 4},
+  "released_normalization_audit": {"evaluated": 48, "active_exact": 0, "off_exact": 48},
+  "calibration": {"calibratable_positive_points": 24, "active_zero_output_target_gradient_exact": 24, "off_zero_zero_exact": 24, "correction": 0.5},
+  "full_composition": {"network_depth": 13, "domain_size": 6, "values_exact": 6, "gradients_exact": 6, "off_points_zero_zero_exact": 6},
+  "negative_control": {"name": "released uncalibrated normalization", "active_exact": 0, "evaluated": 48, "fires": true},
+  "limitation": "The calibrated complete GradIndicator branch and its composition are exact on the declared positive finite domain. Negative active points were not calibratable, and no universal certificate or complete boxplus-neutrality proof is supplied."
+}

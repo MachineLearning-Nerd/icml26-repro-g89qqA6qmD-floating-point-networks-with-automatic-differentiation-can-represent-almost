@@ -10,7 +10,7 @@
     "icml2026-repro",
     "paper-g89qqA6qmD"
   ],
-  "updated_at": "2026-07-27T06:07:08+00:00",
+  "updated_at": "2026-07-27T09:35:00+00:00",
   "root": {
     "slug": "index",
     "title": "Repro - Floating-Point Networks with AD",
@@ -20,6 +20,36 @@
         "slug": "current-verification",
         "title": "Current verification and visibility matrix",
         "file": "pages/current-verification/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-1-current",
+        "title": "Claim 1 — 13-layer network; BLOCKED",
+        "file": "pages/claim-1-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-2-current",
+        "title": "Claim 2 — six activations; BLOCKED",
+        "file": "pages/claim-2-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-3-current",
+        "title": "Claim 3 — 569-layer network; BLOCKED",
+        "file": "pages/claim-3-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-4-current",
+        "title": "Claim 4 — zero-gradient block; BLOCKED",
+        "file": "pages/claim-4-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-5-current",
+        "title": "Claim 5 — zero-output/gradient block; BLOCKED",
+        "file": "pages/claim-5-current/page.md",
         "children": []
       },
       {
@@ -39,9 +69,15 @@
         "title": "Historical rejected baseline — overview",
         "file": "pages/overview/page.md",
         "children": []
+      },
+      {
+        "slug": "historical-index",
+        "title": "Historical rejected baseline — original index",
+        "file": "pages/historical-index/page.md",
+        "children": []
       }
     ]
   },
-  "agent_view_tokens": 1033,
-  "revision": "1785132428820121361"
+  "agent_view_tokens": 5200,
+  "revision": "1785144900000000000"
 }

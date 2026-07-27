@@ -1,0 +1,21 @@
+{
+  "claim": 4,
+  "verdict": "BLOCKED",
+  "source_anchor": "S3.Thmtheorem4.1.1.1",
+  "paper_source_sha256": "5dee110336720fa632917d6f97c9cb2ad09c9cda2ce809bd2640d64b1fc4d55d",
+  "seed": 260501704,
+  "run_id": "c9ae8d24-b7a5-49b2-a697-cde7fd52baed",
+  "git_sha": "75df430674d839cbf996f17a4ca180c897efc8a1",
+  "run_duration_seconds": 37,
+  "scientific_runtime_seconds": 3.4468735329573974,
+  "compute": {"backend": "hf", "flavor": "cpu-upgrade", "estimated_required_cores": 1, "logical_cpus_visible": 64, "cpu_affinity_count": 64, "torch_threads": 4},
+  "architecture": "released full ZeroGradIndicator evaluated with explicit left-to-right float32 affine order",
+  "evaluated": 48,
+  "active_value_and_zero_gradient_exact": 48,
+  "off_point_zero_zero_exact": 48,
+  "composition_network_depth": 13,
+  "composition_domain_values_exact": 6,
+  "composition_domain_gradients_exact": 6,
+  "negative_control": {"name": "zero target-gradient linear weight in companion gradient branch", "target_gradient_lost": true},
+  "limitation": "This is faithful finite architecture evidence, not a proof certificate for all functions on the complete theorem domain or boxplus neutrality for every admissible operand."
+}

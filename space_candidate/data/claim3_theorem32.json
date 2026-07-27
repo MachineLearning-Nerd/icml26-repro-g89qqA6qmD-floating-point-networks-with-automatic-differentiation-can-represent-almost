@@ -1,0 +1,32 @@
+{
+  "claim": 3,
+  "verdict": "BLOCKED",
+  "source_anchor": "S3.Thmtheorem2.1.1.1",
+  "paper_source_sha256": "5dee110336720fa632917d6f97c9cb2ad09c9cda2ce809bd2640d64b1fc4d55d",
+  "seed": 260501708,
+  "run_id": "cadbe6ad-ea68-4097-be0d-554181b001f8",
+  "git_sha": "2b72f35a33258359b34be671a14a6bb4cbb17f02",
+  "run_duration_seconds": 53,
+  "scientific_runtime_seconds": 17.163747263955884,
+  "compute": {"backend": "hf", "flavor": "cpu-upgrade", "estimated_required_cores": 1, "logical_cpus_visible": 64, "cpu_affinity_count": 64, "torch_threads": 4},
+  "format": {"p": 23, "q": 8},
+  "theorem_depth": 569,
+  "executed_padding_layers": 556,
+  "domain_size": 6,
+  "loss_derivative_count": 10,
+  "linear_antisymmetric_family": {"values_exact": 60, "gradients_exact": 60, "evaluated": 60},
+  "negative_control": {"name": "even target g(x,y)=k(x)|y|", "antisymmetry_violations": 30, "rejected": true},
+  "attempts": [
+    {"route": 1, "method": "historical scalar cancellation", "result": "rejected as toy"},
+    {"route": 2, "method": "executed 569-layer ReLU network", "result": "60/60 exact for a linear antisymmetric family"},
+    {"route": 3, "method": "source quantifier and released-construction audit", "result": "arbitrary-odd lookup component not independently reconstructed"},
+    {"route": 4, "method": "nonlinear odd falsification route", "result": "candidate missed 48/60, but this does not exhaust the existential network class"}
+  ],
+  "falsification_route": {
+    "target_antisymmetric": true,
+    "candidate_mismatches": 48,
+    "evaluated": 60,
+    "valid_falsification": false
+  },
+  "limitation": "A fixed full-depth network covers a nontrivial linear odd family. The universal arbitrary-antisymmetric target quantifier remains uncertified; the fourth route is not a valid falsification because the theorem is existential over all networks."
+}
