@@ -110,3 +110,24 @@ hash check, historical subset check, and final blind traversal, the action is:
 
 No second Space will be created. No score increase will be claimed before the
 live judge records a new verdict.
+
+## Post-publication verification
+
+Publication completed additively to the existing Space at revision
+`1bc79260f99dd7df0873360e53a85e04ebe2a5e8`. A fresh exact-revision download
+confirmed:
+
+- all 28 allowlisted upload hashes match;
+- all 15 judged-revision paths remain present;
+- the two judged evidence pages and preserved historical index retain their
+  protected SHA-256 hashes;
+- the blind canonical traversal opens all six current claim pages, both
+  verifiers, every raw JSON file, and historical evidence with zero problems;
+- the cumulative verifier reports six evidence checks PASS and all controls
+  PASS;
+- no credential pattern is present;
+- the current Space head equals the published revision.
+
+GitHub `main` was fast-forwarded with the same candidate text, report, and
+notebook. The campaign is now **awaiting live judge**. The score remains the
+previous recorded `5/12`.

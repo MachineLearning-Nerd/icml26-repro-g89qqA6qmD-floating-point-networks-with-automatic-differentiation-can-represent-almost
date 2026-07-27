@@ -34,6 +34,7 @@ NumPy 2.3.1, and Torch 2.7.1+cpu are locked with `uv`.
 
 - [Illustrated technical report](reports/floating-point-networks/report.md)
 - [Self-contained marimo tutorial](notebooks/floating_point_networks.py)
+- [Published Hugging Face logbook](https://huggingface.co/spaces/DineshAI/g89qqA6qmD)
 - [Current evaluator-visible candidate](space_candidate/pages/index.md)
 - [Exact source and quantifier audit](research/source_audit.md)
 - [Gap analysis against the public 12/12 reference](research/logbook_gap_analysis.md)
@@ -59,6 +60,11 @@ The campaign seeds the authors' public implementation
 `3cf61240748f09af29084556b1876eddc1e462fb`, pins the environment, and converts
 the interactive author demo into a deterministic headless verifier. The
 explicit interpreter and experiment routes are under `reproduction/`.
+
+Published Space revision:
+[`1bc79260f99dd7df0873360e53a85e04ebe2a5e8`](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/commit/1bc79260f99dd7df0873360e53a85e04ebe2a5e8).
+The previous judged score remains 5/12 until a live evaluator records a new
+verdict.
 
 ## Authors' original README
 
