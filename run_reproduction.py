@@ -293,6 +293,16 @@ def main() -> None:
             ARTIFACTS / "routes" / "full_network_composition.json",
             full_network,
         )
+    try:
+        from reproduction.activation_condition_audit import run as run_activation_audit
+    except ImportError:
+        activation_audit = None
+    else:
+        activation_audit = run_activation_audit()
+        dump_json(
+            ARTIFACTS / "routes" / "activation_condition_audit.json",
+            activation_audit,
+        )
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
@@ -421,6 +431,20 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
         print(
             "FULL_NETWORK_COMPOSITION="
             + json.dumps(compact_full_network, sort_keys=True)
+        )
+    if activation_audit is not None:
+        compact_activation_audit = {
+            "route": activation_audit["route"],
+            "format": activation_audit["format"],
+            "rows": activation_audit["rows"],
+            "negative_control": activation_audit["negative_control"],
+            "independent_checker": activation_audit["independent_checker"],
+            "verdicts": activation_audit["verdicts"],
+            "limitation": activation_audit["limitation"],
+        }
+        print(
+            "ACTIVATION_CONDITION_AUDIT="
+            + json.dumps(compact_activation_audit, sort_keys=True)
         )
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
