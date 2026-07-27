@@ -380,6 +380,7 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
     if derivative_audit is not None:
         compact_derivative_audit = {
             "evaluated": derivative_audit["evaluated"],
+            "calibratable": derivative_audit["calibratable"],
             "unique_stored_actual_correction_tuples": derivative_audit[
                 "unique_stored_actual_correction_tuples"
             ],
