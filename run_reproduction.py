@@ -266,6 +266,13 @@ def main() -> None:
     raw6, independent6, control6 = claim6(SEED)
     dump_json(ARTIFACTS / "historical_baseline_checks.json", historical)
     dump_json(ARTIFACTS / "author_code_smoke.json", author)
+    try:
+        from reproduction.torch_contract_sweep import run as run_torch_contract_sweep
+    except ImportError:
+        torch_sweep = None
+    else:
+        torch_sweep = run_torch_contract_sweep()
+        dump_json(ARTIFACTS / "routes" / "torch_contract_sweep.json", torch_sweep)
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
@@ -349,6 +356,16 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
     print("CLAIM6_CONTROL=" + json.dumps(control6, sort_keys=True))
     print("CLAIM6_EVALUATOR_VERIFIER=" + candidate_verifier.stdout.strip().replace("\n", " | "))
     print("AUTHOR_SMOKE=" + json.dumps(author, sort_keys=True))
+    if torch_sweep is not None:
+        compact_sweep = {
+            "zero_grad_indicator": torch_sweep["zero_grad_indicator"],
+            "grad_indicator": torch_sweep["grad_indicator"],
+            "constructor_error_count": len(torch_sweep["constructor_errors"]),
+            "destructive_control": torch_sweep["destructive_control"],
+            "verdicts": torch_sweep["verdicts"],
+            "limitation": torch_sweep["limitation"],
+        }
+        print("TORCH_CONTRACT_SWEEP=" + json.dumps(compact_sweep, sort_keys=True))
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
     # The author-code smoke test is diagnostic at this baseline: Claims 1--5
