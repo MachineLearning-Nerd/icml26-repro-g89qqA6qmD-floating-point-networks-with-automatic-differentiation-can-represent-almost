@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="420" viewBox="0 0 1120 420" role="img" aria-labelledby="title desc">
+  <title id="title">Theorem 3.2 depth and falsification routes</title>
+  <desc id="desc">A 569-layer network passes sixty linear antisymmetric targets. A nonlinear odd target is missed by this network but does not falsify an existential theorem.</desc>
+  <rect width="1120" height="420" rx="24" fill="#111827"/>
+  <text x="55" y="58" fill="#f9fafb" font-family="system-ui,sans-serif" font-size="28" font-weight="700">Theorem 3.2: full prescribed depth, carefully bounded conclusion</text>
+  <g font-family="system-ui,sans-serif">
+    <rect x="55" y="108" width="250" height="220" rx="18" fill="#1f2937" stroke="#60a5fa" stroke-width="2"/>
+    <text x="180" y="150" text-anchor="middle" fill="#93c5fd" font-size="20" font-weight="700">Executed network</text>
+    <text x="180" y="200" text-anchor="middle" fill="#fff" font-size="48" font-weight="700">569</text>
+    <text x="180" y="230" text-anchor="middle" fill="#cbd5e1" font-size="16">layers</text>
+    <text x="180" y="271" text-anchor="middle" fill="#cbd5e1" font-size="15">556 padding + 13 base</text>
+    <text x="180" y="302" text-anchor="middle" fill="#60a5fa" font-size="16" font-weight="700">depth contract ✓</text>
+    <rect x="335" y="108" width="330" height="220" rx="18" fill="#12342d" stroke="#34d399" stroke-width="2"/>
+    <text x="500" y="150" text-anchor="middle" fill="#6ee7b7" font-size="20" font-weight="700">Linear odd family g(x,y)=k(x)y</text>
+    <text x="500" y="205" text-anchor="middle" fill="#fff" font-size="44" font-weight="700">60 / 60</text>
+    <text x="500" y="239" text-anchor="middle" fill="#d1fae5" font-size="16">values exact</text>
+    <text x="500" y="273" text-anchor="middle" fill="#fff" font-size="30" font-weight="700">60 / 60</text>
+    <text x="500" y="301" text-anchor="middle" fill="#d1fae5" font-size="16">gradients exact</text>
+    <rect x="695" y="108" width="370" height="220" rx="18" fill="#3b1720" stroke="#fb7185" stroke-width="2"/>
+    <text x="880" y="150" text-anchor="middle" fill="#fda4af" font-size="20" font-weight="700">Falsification route</text>
+    <text x="880" y="196" text-anchor="middle" fill="#fff" font-size="18">nonlinear odd target</text>
+    <text x="880" y="235" text-anchor="middle" fill="#fff" font-size="36" font-weight="700">48 / 60 missed</text>
+    <text x="880" y="273" text-anchor="middle" fill="#fecdd3" font-size="15">one candidate ≠ all networks</text>
+    <text x="880" y="303" text-anchor="middle" fill="#fda4af" font-size="16" font-weight="700">NOT a valid falsification</text>
+  </g>
+  <text x="55" y="376" fill="#9ca3af" font-family="system-ui,sans-serif" font-size="15">Four routes completed; arbitrary antisymmetric dependence remains BLOCKED.</text>
+</svg>

@@ -48,5 +48,12 @@ Formal cumulative regeneration run
 route, checked the displayed JSON against those live results, and produced the
 output above.
 
+The release-winning repeat
+`b348d98a-3474-4a1a-8fee-8dcd084e0b85` at Git
+`e412c472eb5adc6beb00bb311ce7f1fbf698170d` completed on the same CPU flavor
+in 64 s (24.209091 s scientific runtime). It corrected stale generated
+evaluation wording without changing a scientific route and reran the complete
+suite successfully.
+
 The old `verify` and `overview` pages are preserved as **Historical rejected
 baseline** evidence and are not current verification.

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="410" viewBox="0 0 1120 410" role="img" aria-labelledby="title desc">
+  <title id="title">Gradient indicator calibration evidence</title>
+  <desc id="desc">Released normalization passes zero of 48 active cases; an exact factor of one half passes 24 of 24 calibratable positive points and six of six composed targets.</desc>
+  <rect width="1120" height="410" rx="24" fill="#fff7ed"/>
+  <text x="55" y="58" fill="#431407" font-family="system-ui,sans-serif" font-size="28" font-weight="700">Claim 5 diagnostic: the executed derivative is exactly 2× the stored one</text>
+  <text x="55" y="90" fill="#7c2d12" font-family="system-ui,sans-serif" font-size="16">The correction is measured from the full indicator, not fitted to target outputs.</text>
+  <g font-family="system-ui,sans-serif">
+    <text x="60" y="150" fill="#7c2d12" font-size="17">released normalization</text>
+    <rect x="290" y="127" width="700" height="34" rx="8" fill="#fed7aa"/>
+    <rect x="290" y="127" width="5" height="34" rx="3" fill="#ef4444"/>
+    <text x="1010" y="151" fill="#991b1b" font-size="18" font-weight="700">0 / 48</text>
+    <text x="60" y="220" fill="#7c2d12" font-size="17">corrected active points</text>
+    <rect x="290" y="197" width="700" height="34" rx="8" fill="#fed7aa"/>
+    <rect x="290" y="197" width="700" height="34" rx="8" fill="#22c55e"/>
+    <text x="1010" y="221" fill="#166534" font-size="18" font-weight="700">24 / 24</text>
+    <text x="60" y="290" fill="#7c2d12" font-size="17">13-layer composition</text>
+    <rect x="290" y="267" width="700" height="34" rx="8" fill="#fed7aa"/>
+    <rect x="290" y="267" width="700" height="34" rx="8" fill="#16a34a"/>
+    <text x="1010" y="291" fill="#166534" font-size="18" font-weight="700">6 / 6</text>
+    <rect x="60" y="330" width="1000" height="48" rx="12" fill="#431407"/>
+    <text x="560" y="361" text-anchor="middle" fill="#ffedd5" font-size="18" font-weight="700">bit-exact correction = stored derivative / executed derivative = 0.5</text>
+  </g>
+</svg>

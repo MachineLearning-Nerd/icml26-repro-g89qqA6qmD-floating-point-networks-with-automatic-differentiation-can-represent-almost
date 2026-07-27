@@ -1,6 +1,6 @@
 # Claim 6 — current VERIFIED evidence
 
-## Exact claim and source
+## Exact contract and source
 
 Section 1.1 of arXiv 2605.01702 states that the construction exploits
 floating-point non-associativity to decouple the AD-computed gradient from the
@@ -46,8 +46,7 @@ the two explicitly rounded products were:
 They differ by one or more binary64 bits; the relative gap is
 `2.0829733955809995e-16`.
 
-Download the complete [raw
-JSON](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/data/claim6_raw.json)
+Download the complete [Raw JSON](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/data/claim6_raw.json)
 and the standalone [verifier
 source](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/code/verify_claim6.py).
 It is also included in the [cumulative regression

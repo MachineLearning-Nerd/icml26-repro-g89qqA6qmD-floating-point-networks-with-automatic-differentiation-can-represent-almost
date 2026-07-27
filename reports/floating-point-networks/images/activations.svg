@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="390" viewBox="0 0 1120 390" role="img" aria-labelledby="title desc">
+  <title id="title">Activation condition audit</title>
+  <desc id="desc">All six named activations pass four Condition 2 bullets, a Condition 3 route, and analytic versus autograd agreement. A constant activation is rejected.</desc>
+  <rect width="1120" height="390" rx="24" fill="#071a2b"/>
+  <text x="55" y="58" fill="#f8fafc" font-family="system-ui,sans-serif" font-size="28" font-weight="700">Six named activations: every tested witness passes</text>
+  <g font-family="system-ui,sans-serif">
+    <text x="55" y="108" fill="#94a3b8" font-size="15">Activation</text>
+    <text x="310" y="108" fill="#94a3b8" font-size="15">Condition 2</text>
+    <text x="550" y="108" fill="#94a3b8" font-size="15">Condition 3</text>
+    <text x="790" y="108" fill="#94a3b8" font-size="15">analytic ↔ autograd</text>
+    <g font-size="17">
+      <text x="55" y="148" fill="#f8fafc">ReLU</text><text x="310" y="148" fill="#6ee7b7">4 / 4 ✓</text><text x="550" y="148" fill="#6ee7b7">first route ✓</text><text x="790" y="148" fill="#6ee7b7">agree ✓</text>
+      <text x="55" y="182" fill="#f8fafc">ELU</text><text x="310" y="182" fill="#6ee7b7">4 / 4 ✓</text><text x="550" y="182" fill="#6ee7b7">second route ✓</text><text x="790" y="182" fill="#6ee7b7">agree ✓</text>
+      <text x="55" y="216" fill="#f8fafc">GELU</text><text x="310" y="216" fill="#6ee7b7">4 / 4 ✓</text><text x="550" y="216" fill="#6ee7b7">second route ✓</text><text x="790" y="216" fill="#6ee7b7">agree ✓</text>
+      <text x="55" y="250" fill="#f8fafc">Swish</text><text x="310" y="250" fill="#6ee7b7">4 / 4 ✓</text><text x="550" y="250" fill="#6ee7b7">second route ✓</text><text x="790" y="250" fill="#6ee7b7">agree ✓</text>
+      <text x="55" y="284" fill="#f8fafc">Sigmoid</text><text x="310" y="284" fill="#6ee7b7">4 / 4 ✓</text><text x="550" y="284" fill="#6ee7b7">second route ✓</text><text x="790" y="284" fill="#6ee7b7">agree ✓</text>
+      <text x="55" y="318" fill="#f8fafc">tanh</text><text x="310" y="318" fill="#6ee7b7">4 / 4 ✓</text><text x="550" y="318" fill="#6ee7b7">second route ✓</text><text x="790" y="318" fill="#6ee7b7">agree ✓</text>
+    </g>
+    <rect x="920" y="126" width="150" height="188" rx="15" fill="#36171b" stroke="#fb7185" stroke-width="2"/>
+    <text x="995" y="162" text-anchor="middle" fill="#fda4af" font-size="16" font-weight="700">negative control</text>
+    <text x="995" y="202" text-anchor="middle" fill="#fff" font-size="17">σ(x) = 1</text>
+    <text x="995" y="238" text-anchor="middle" fill="#fecdd3" font-size="14">no separation</text>
+    <text x="995" y="264" text-anchor="middle" fill="#fecdd3" font-size="14">zero derivative</text>
+    <text x="995" y="297" text-anchor="middle" fill="#fb7185" font-size="16" font-weight="700">REJECTED ✓</text>
+  </g>
+  <text x="55" y="360" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="15">Condition 1 and full non-ReLU network constructions remain outside this finite audit.</text>
+</svg>

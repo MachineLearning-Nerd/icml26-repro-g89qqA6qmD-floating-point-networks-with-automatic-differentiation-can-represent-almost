@@ -19,6 +19,7 @@ pages remain reachable and unchanged, but their proxy verifiers are superseded.
 | 4 | [full zero-gradient block](#/claim-4-current) | BLOCKED |
 | 5 | [full zero-output/gradient block](#/claim-5-current) | BLOCKED |
 | 6 | [non-associativity with exact checker](#/claim-6-current) | VERIFIED |
+| release | [evaluator-blind audit and historical subset proof](#/release-audit) | PASS |
 
 The current standalone verifier is
 [`code/verify_current.py`](https://huggingface.co/spaces/DineshAI/g89qqA6qmD/blob/main/code/verify_current.py).

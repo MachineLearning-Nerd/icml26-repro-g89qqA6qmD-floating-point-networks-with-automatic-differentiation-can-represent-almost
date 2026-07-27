@@ -59,6 +59,12 @@
         "children": []
       },
       {
+        "slug": "release-audit",
+        "title": "Release audit and evaluator-blind review",
+        "file": "pages/release-audit/page.md",
+        "children": []
+      },
+      {
         "slug": "verify",
         "title": "Historical rejected baseline — verify",
         "file": "pages/verify/page.md",
