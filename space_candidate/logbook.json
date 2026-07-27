@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "title": "Repro - Floating-Point Networks with AD",
+  "emoji": "🎯",
+  "space_id": "DineshAI/g89qqA6qmD",
+  "paper": {
+    "arxiv_id": "2605.01702"
+  },
+  "tags": [
+    "icml2026-repro",
+    "paper-g89qqA6qmD"
+  ],
+  "updated_at": "2026-07-27T06:07:08+00:00",
+  "root": {
+    "slug": "index",
+    "title": "Repro - Floating-Point Networks with AD",
+    "file": "pages/index.md",
+    "children": [
+      {
+        "slug": "current-verification",
+        "title": "Current verification and visibility matrix",
+        "file": "pages/current-verification/page.md",
+        "children": []
+      },
+      {
+        "slug": "claim-6-current",
+        "title": "Claim 6 — current VERIFIED evidence",
+        "file": "pages/claim-6-current/page.md",
+        "children": []
+      },
+      {
+        "slug": "verify",
+        "title": "Historical rejected baseline — verify",
+        "file": "pages/verify/page.md",
+        "children": []
+      },
+      {
+        "slug": "overview",
+        "title": "Historical rejected baseline — overview",
+        "file": "pages/overview/page.md",
+        "children": []
+      }
+    ]
+  },
+  "agent_view_tokens": 1033,
+  "revision": "1785132428820121361"
+}

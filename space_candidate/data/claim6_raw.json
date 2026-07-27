@@ -1,0 +1,38 @@
+{
+  "claim": 6,
+  "verdict": "VERIFIED",
+  "paper_source_sha256": "5dee110336720fa632917d6f97c9cb2ad09c9cda2ce809bd2640d64b1fc4d55d",
+  "git_sha": "ac11dbd077d7c7f3a52ab3f53bea48e866ca4ffa",
+  "seed": 260501702,
+  "run_id": "569fb7de-fe90-4196-b3d5-8c8a75c2d1a9",
+  "run_duration_seconds": 26,
+  "scientific_runtime_seconds": 0.1441279910504818,
+  "compute": {
+    "backend": "hf",
+    "flavor": "cpu-upgrade",
+    "estimated_required_cores": 4,
+    "logical_cpus_visible": 64,
+    "cpu_affinity_count": 64,
+    "torch_threads": 4
+  },
+  "triple": {
+    "a": -3.390181137426782e-49,
+    "b": 1.9001924576251575e-36,
+    "c": 2.9840622466904965e-46,
+    "left": -1.9223318928897442e-130,
+    "right": -1.9223318928897446e-130,
+    "relative_gap": 2.0829733955809995e-16
+  },
+  "independent_checker": {
+    "float_bitwise_difference": true,
+    "exact_rational_products_equal": true
+  },
+  "negative_control": {
+    "operands": [2.0, 0.5, 8.0],
+    "left": 8.0,
+    "right": 8.0,
+    "nonassociativity_detector_fires": false,
+    "expected": false,
+    "pass": true
+  }
+}

@@ -269,6 +269,19 @@ def main() -> None:
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
+    candidate_verifier = subprocess.run(
+        [os.fspath(Path(os.sys.executable)), os.fspath(ROOT / "space_candidate" / "code" / "verify_claim6.py")],
+        cwd=ROOT,
+        check=False,
+        text=True,
+        capture_output=True,
+    )
+    dump_text(
+        ARTIFACTS / "claim_6" / "evaluator_visible_verifier_output.txt",
+        candidate_verifier.stdout + candidate_verifier.stderr,
+    )
+    if candidate_verifier.returncode != 0:
+        raise AssertionError("Evaluator-visible Claim 6 verifier failed")
     dump_text(
         ARTIFACTS / "claim_6" / "method.md",
         "# Method\n\n"
@@ -334,6 +347,7 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
     print("CLAIM6_RAW=" + json.dumps(raw6, sort_keys=True))
     print("CLAIM6_CHECKER=" + json.dumps(independent6, sort_keys=True))
     print("CLAIM6_CONTROL=" + json.dumps(control6, sort_keys=True))
+    print("CLAIM6_EVALUATOR_VERIFIER=" + candidate_verifier.stdout.strip().replace("\n", " | "))
     print("AUTHOR_SMOKE=" + json.dumps(author, sort_keys=True))
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
