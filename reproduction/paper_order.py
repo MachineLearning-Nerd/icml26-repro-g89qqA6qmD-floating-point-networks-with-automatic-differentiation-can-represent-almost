@@ -33,7 +33,13 @@ def left_sum(values: Array) -> np.float32:
 
 def affine_forward(layer: nn.Linear, inputs: Array) -> Array:
     x = np.asarray(inputs, dtype=np.float32).reshape(-1)
-    weights = layer.weight.detach().cpu().numpy().astype(np.float32, copy=False)
+    weights = (
+        layer.weight.detach()
+        .cpu()
+        .numpy()
+        .astype(np.float32, copy=False)
+        .reshape(layer.out_features, layer.in_features)
+    )
     bias = (
         layer.bias.detach().cpu().numpy().astype(np.float32, copy=False).reshape(-1)
         if layer.bias is not None
@@ -51,7 +57,13 @@ def affine_forward(layer: nn.Linear, inputs: Array) -> Array:
 
 def affine_backward(layer: nn.Linear, upstream: Array) -> Array:
     gradient = np.asarray(upstream, dtype=np.float32).reshape(-1)
-    weights = layer.weight.detach().cpu().numpy().astype(np.float32, copy=False)
+    weights = (
+        layer.weight.detach()
+        .cpu()
+        .numpy()
+        .astype(np.float32, copy=False)
+        .reshape(layer.out_features, layer.in_features)
+    )
     outputs = np.empty(weights.shape[1], dtype=np.float32)
     for col in range(weights.shape[1]):
         products = np.asarray(
