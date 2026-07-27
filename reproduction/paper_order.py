@@ -35,7 +35,7 @@ def affine_forward(layer: nn.Linear, inputs: Array) -> Array:
     x = np.asarray(inputs, dtype=np.float32).reshape(-1)
     weights = layer.weight.detach().cpu().numpy().astype(np.float32, copy=False)
     bias = (
-        layer.bias.detach().cpu().numpy().astype(np.float32, copy=False)
+        layer.bias.detach().cpu().numpy().astype(np.float32, copy=False).reshape(-1)
         if layer.bias is not None
         else None
     )
