@@ -314,7 +314,7 @@ def main() -> None:
         "numpy": np.__version__,
         "torch": torch.__version__,
         "platform": platform.platform(),
-        "estimated_required_cores": 4,
+        "estimated_required_cores": 1,
         "selected_backend": "hf",
         "selected_flavor": "cpu-upgrade",
         "actual_logical_cpus_visible": os.cpu_count(),
