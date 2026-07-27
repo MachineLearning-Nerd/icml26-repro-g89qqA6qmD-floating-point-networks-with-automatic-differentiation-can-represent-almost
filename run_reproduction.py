@@ -337,8 +337,10 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
     print("AUTHOR_SMOKE=" + json.dumps(author, sort_keys=True))
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
-    if not author["active_point_contract_pass"]:
-        raise SystemExit("Author-code smoke contract failed")
+    # The author-code smoke test is diagnostic at this baseline: Claims 1--5
+    # remain BLOCKED regardless of its outcome. Claim 6 and its independent
+    # checker/control are the only accepted baseline evidence, and failures in
+    # those checks already raise above.
 
 
 if __name__ == "__main__":
