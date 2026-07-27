@@ -303,6 +303,16 @@ def main() -> None:
             ARTIFACTS / "routes" / "activation_condition_audit.json",
             activation_audit,
         )
+    try:
+        from reproduction.theorem32_audit import run as run_theorem32_audit
+    except ImportError:
+        theorem32_audit = None
+    else:
+        theorem32_audit = run_theorem32_audit()
+        dump_json(
+            ARTIFACTS / "routes" / "theorem32_four_route_audit.json",
+            theorem32_audit,
+        )
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
@@ -445,6 +455,42 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
         print(
             "ACTIVATION_CONDITION_AUDIT="
             + json.dumps(compact_activation_audit, sort_keys=True)
+        )
+    if theorem32_audit is not None:
+        compact_theorem32 = {
+            "route": theorem32_audit["route"],
+            "format": theorem32_audit["format"],
+            "theorem_depth": theorem32_audit["theorem_depth"],
+            "padding_layers": theorem32_audit["padding_layers"],
+            "domain": theorem32_audit["domain"],
+            "loss_derivatives": theorem32_audit["loss_derivatives"],
+            "linear_exact": {
+                "values": sum(row["value_exact"] for row in theorem32_audit["rows"]),
+                "gradients": sum(
+                    row["gradient_exact"] for row in theorem32_audit["rows"]
+                ),
+                "evaluated": len(theorem32_audit["rows"]),
+            },
+            "negative_control": theorem32_audit["negative_control"],
+            "independent_checker": theorem32_audit["independent_checker"],
+            "attempts": theorem32_audit["attempts"],
+            "falsification_route": {
+                key: theorem32_audit["falsification_route"][key]
+                for key in (
+                    "exact_claim",
+                    "assumption_audit",
+                    "candidate_mismatch_count",
+                    "evaluated",
+                    "valid_falsification",
+                    "reason",
+                )
+            },
+            "verdicts": theorem32_audit["verdicts"],
+            "limitation": theorem32_audit["limitation"],
+        }
+        print(
+            "THEOREM32_FOUR_ROUTE_AUDIT="
+            + json.dumps(compact_theorem32, sort_keys=True)
         )
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
