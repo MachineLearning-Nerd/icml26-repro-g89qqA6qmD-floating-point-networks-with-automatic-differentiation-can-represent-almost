@@ -260,6 +260,12 @@ def evaluate_zero_grad(module: ZeroGradIndicator, x: float) -> tuple[float, floa
     return float(output), float(gradient)
 
 
+def evaluate_exact_indicator(module: ExactIndicator, x: float) -> tuple[float, float]:
+    output, cache = exact_indicator_forward(module, f32(x))
+    gradient = exact_indicator_backward(module, cache, f32(1.0))
+    return float(output), float(gradient)
+
+
 def evaluate_grad(module: GradIndicator, x: float) -> tuple[float, float]:
     output, cache = grad_indicator_forward(module, f32(x))
     gradient = grad_indicator_backward(module, cache, f32(1.0))

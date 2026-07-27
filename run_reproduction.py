@@ -273,6 +273,16 @@ def main() -> None:
     else:
         paper_order_sweep = run_paper_order_sweep()
         dump_json(ARTIFACTS / "routes" / "paper_order_sweep.json", paper_order_sweep)
+    try:
+        from reproduction.derivative_calibration_audit import run as run_derivative_audit
+    except ImportError:
+        derivative_audit = None
+    else:
+        derivative_audit = run_derivative_audit()
+        dump_json(
+            ARTIFACTS / "routes" / "derivative_calibration_audit.json",
+            derivative_audit,
+        )
     dump_json(ARTIFACTS / "claim_6" / "raw_results.json", raw6)
     dump_json(ARTIFACTS / "claim_6" / "independent_checker_output.json", independent6)
     dump_json(ARTIFACTS / "claim_6" / "negative_control_output.json", control6)
@@ -367,6 +377,24 @@ Runtime: `{elapsed:.6f}` seconds. Git SHA: `{metadata["git_sha"]}`.
             "limitation": paper_order_sweep["limitation"],
         }
         print("PAPER_ORDER_SWEEP=" + json.dumps(compact_paper_order, sort_keys=True))
+    if derivative_audit is not None:
+        compact_derivative_audit = {
+            "evaluated": derivative_audit["evaluated"],
+            "unique_stored_actual_correction_tuples": derivative_audit[
+                "unique_stored_actual_correction_tuples"
+            ],
+            "original_active_exact": derivative_audit["original_active_exact"],
+            "calibrated_active_exact": derivative_audit["calibrated_active_exact"],
+            "calibrated_off_exact": derivative_audit["calibrated_off_exact"],
+            "negative_control": derivative_audit["negative_control"],
+            "independent_checker": derivative_audit["independent_checker"],
+            "verdicts": derivative_audit["verdicts"],
+            "limitation": derivative_audit["limitation"],
+        }
+        print(
+            "DERIVATIVE_CALIBRATION_AUDIT="
+            + json.dumps(compact_derivative_audit, sort_keys=True)
+        )
     print("ENVIRONMENT=" + json.dumps(metadata, sort_keys=True))
 
     # The author-code smoke test is diagnostic at this baseline: Claims 1--5
